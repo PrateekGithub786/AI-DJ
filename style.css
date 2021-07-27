@@ -1,0 +1,41 @@
+.heading{
+    width: 100%;
+    margin: 0px;
+    font-size: medium;
+}
+
+span{
+    font-size: small !important;
+    color: red;
+}
+
+.disk{
+    width: 210px;
+    border-radius: 135px;
+}
+
+.speed{
+    float: left;
+}
+
+.volume{
+    float: right;
+}
+
+#speed_button, #volume_button{
+    margin: 20px;
+}
+
+body{
+    background-size: cover;
+}
+
+.play{
+    width: 80px;
+}
+
+canvas{
+    border: 5px solid white;
+    border-radius: 50px;
+    box-shadow: 2px 2px 7px grey;
+}
