@@ -1,5 +1,4 @@
-music1 = "";
-music2 = "";
+song = "";
 
 leftWristx = 0;
 leftWristy = 0;
@@ -9,9 +8,6 @@ rightWristy = 0;
 
 scoreRightWrist = 0;
 scoreLeftWrist = 0;
-
-statusSong1 = 0;
-statusSong2 = 0;
 
 function setup(){
     canvas = createCanvas(600, 500);
@@ -47,28 +43,54 @@ function gotPoses(results){
 }
 
 function preload(){
-    music1 = loadSound("music.mp3");
-    music2 = loadSound("music2.mp3");
+    song = loadSound("music.mp3");
+}
+
+function play(){
+    song.play();
+    song.setVolume(0.5);
+    song.rate(1);
 }
 
 function draw(){
     image(video, 0, 0, 600, 500);
 
-    statusSong1 = music1.isPlaying();
-    statusSong2 = music2.isPlaying();
-
     fill("#FFFFFF");
     stroke("#000000");
 
+    if(scoreRightWrist > 0.2){
+        circle(rightWristx, rightWristy, 20);
+
+        if(rightWristy >0 && rightWristy <= 100){
+            document.getElementById("speed_button").innerHTML = "Speed" + " 0.5x";
+            song.rate(0.5);
+        
+        }
+        else if(rightWristy >100 && rightWristy <= 200){
+            document.getElementById("speed_button").innerHTML = "Speed" + " 1x";
+            song.rate(1);
+        }
+        else if(rightWristy >200 && rightWristy <= 300){
+            document.getElementById("speed_button").innerHTML = "Speed" + " 1.5x";
+            song.rate(1.5);
+        }
+        else if(rightWristy >300 && rightWristy <= 400){
+            document.getElementById("speed_button").innerHTML = "Speed" + " 2x";
+            song.rate(2);
+        }
+        else if(rightWristy >400){
+            document.getElementById("speed_button").innerHTML = "Speed" + " 2.5x";
+            song.rate(2.5);
+        }
+    }
+
     if(scoreLeftWrist > 0.2){
         circle(leftWristx, leftWristy, 20);
-        music2.stop();
-
-        if(statusSong1 = false){
-            music1.play();
-            document.getElementById("name_of_song").innerHTML = " " + "Harry Potter Theme";
-        }
-    
+        InNumberLeftWristy = Number(leftWristy);
+        removeDecimals = floor(InNumberLeftWristy);
+        volume = removeDecimals/500;
+        song.setVolume(volume);
+        document.getElementById("volume_button").innerHTML = "Volume " + volume;
     }
 
 }
